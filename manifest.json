@@ -1,0 +1,28 @@
+{
+  "manifest_version": 2,
+  "name": "Jump Jump",
+  "version": "1.0",
+  "description": "Redirect URL",
+
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "tabs",
+    "*://*/*",
+    "storage"
+  ],
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "icons": {
+    "48": "Luci.png"
+  }
+
+}
