@@ -18,9 +18,9 @@ browser.webRequest.onBeforeRequest.addListener(
     const url = new URL(details.url);
 
     for (let rule of redirectRules) {
-      if (url.hostname === rule.from) {
-        const newUrl = details.url.replace(rule.from, rule.to);
-        console.log(`Redirecting ${details.url} to ${newUrl}`);
+      if (url.hostname === rule.from && url.pathname.includes(rule.match)) {
+        const newUrl = details.url.replace(rule.from + rule.match, rule.to) + rule.parameter;
+        console.log(`${url} => ${newUrl}`);
 
         browser.tabs.update(details.tabId, { url: newUrl });
         return { cancel: true };

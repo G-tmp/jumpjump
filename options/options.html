@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="Content-Type" content="text/html; charset=utf-8">
+  <title>Redirect Rules</title>
+</head>
+<body>
+  <h1>Redirect Rules</h1>
+  <form id="rule-form" accept-charset=utf-8>
+    From: <input type="text" id="from" required>
+    Match (in path): <input type="text" id="match">
+    <br>
+    To: <input type="text" id="to" required>
+    ?: <input type="text" id="parameter">
+    <br>
+    <button type="submit">Add Rule</button>
+    <button id="clearBtn">Clear</button>
+  </form>
+
+  <ul id="rules-list"></ul>
+
+  <script src="options.js"></script>
+</body>
+</html>
