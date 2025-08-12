@@ -1,5 +1,5 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Jump Jump",
   "version": "1.0",
   "description": "Redirect specific URL to new URL",
@@ -9,17 +9,25 @@
     "webRequest",
     "webRequestBlocking",
     "tabs",
-    "*://*/*",
     "storage"
   ],
 
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["background.js"] // service_worker on chrome
   },
 
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
+  },
+
+  "action": {
+    "default_title": "Jump action",
+    "default_popup": "options/options.html"
   },
 
   "icons": {

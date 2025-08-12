@@ -14,7 +14,7 @@ browser.storage.onChanged.addListener(updateRules);
 updateRules();
 
 browser.webRequest.onBeforeRequest.addListener(
-  function (details) {
+  (details) => {
     const url = new URL(details.url);
 
     for (let rule of redirectRules) {
