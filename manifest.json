@@ -9,8 +9,8 @@
     "webRequest",
     "webRequestBlocking",
     "tabs",
-    "*://*/*",
-    "storage"
+    "storage",
+    "<all_urls>"
   ],
 
   "background": {
@@ -20,6 +20,12 @@
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
+  },
+
+  "browser_action": {
+    "default_icon": "Luci.png",
+    "default_title": "Jump action",
+    "default_popup": "options/options.html"
   },
 
   "icons": {
