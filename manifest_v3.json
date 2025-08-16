@@ -6,9 +6,7 @@
   "homepage_url": "https://github.com/g-tmp/jumpjump",
 
   "permissions": [
-    "webRequest",
-    "webRequestBlocking",
-    "tabs",
+    "declarativeNetRequestWithHostAccess",
     "storage"
   ],
 
@@ -17,7 +15,7 @@
   ],
 
   "background": {
-    "scripts": ["background.js"] // service_worker on chrome
+    "scripts": ["background_v3.js"] // service_worker on chrome
   },
 
   "options_ui": {
