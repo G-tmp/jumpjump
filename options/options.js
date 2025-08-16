@@ -1,15 +1,15 @@
 
 function buildRuleObject() {
-  const from = document.getElementById("from").value.trim();
-  const match = document.getElementById("match").value.trim();
-  const to = document.getElementById("to").value.trim();
-  const parameter = document.getElementById("parameter").value.trim();
+  const domain = document.getElementById("domain").value.trim();
+  const path = document.getElementById("path").value.trim();
+  const substitution = document.getElementById("substitution").value.trim();
+  const extra = document.getElementById("extra").value.trim();
 
-  if (!from || !to) {
+  if (!domain || !substitution) {
     return null;
   }
 
-  return { from, match, to, parameter };
+  return { domain, path, substitution, extra };
 }
 
 
@@ -21,7 +21,7 @@ function loadRules() {
 
     rules.forEach((rule, index) => {
       const item = document.createElement("li");
-      item.textContent = `${rule.from}${rule.match} => ${rule.to} ${rule.parameter}`;
+      item.textContent = `${rule.domain}${rule.path} => ${rule.substitution} ${rule.extra}`;
 
       const modifyBtn = document.createElement("button");
       modifyBtn.textContent = "Modify";
@@ -29,10 +29,10 @@ function loadRules() {
         e.preventDefault();
 
         // Fill the form for editing
-        from.value = rule.from;
-        match.value = rule.match;
-        to.value = rule.to;
-        parameter.value = rule.parameter;
+        domain.value = rule.domain;
+        path.value = rule.path;
+        substitution.value = rule.substitution;
+        extra.value = rule.extra;
 
         // Change submit behavior to save the modified rule
         document.getElementById("rule-form").onsubmit = (e) => {
@@ -88,10 +88,10 @@ document.getElementById("rule-form").onsubmit = (e) => {
 
 
 function clear(){
-  from.value = "";
-  match.value = "";
-  to.value = "";
-  parameter.value = "";
+  domain.value = "";
+  path.value = "";
+  substitution.value = "";
+  extra.value = "";
 }
 
 

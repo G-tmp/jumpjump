@@ -6,12 +6,14 @@
 </head>
 <body>
   <h1>Redirect Rules</h1>
+  url.replace(domain + path, substitution) + extra
+  <p>
   <form id="rule-form" accept-charset=utf-8>
-    From: <input type="text" id="from" required>
-    Match (in path): <input type="text" id="match">
+    Domain: <input type="text" id="domain" required>
+    Path: <input type="text" id="path">
     <br>
-    To: <input type="text" id="to" required>
-    +: <input type="text" id="parameter">
+    Substitution: <input type="text" id="substitution" required>
+    Extra: <input type="text" id="extra">
     <br>
     <button type="submit">Add Rule</button>
     <button id="clearBtn">Clear</button>

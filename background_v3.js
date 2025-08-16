@@ -19,17 +19,17 @@ async function updateDNRRules() {
   const rules = redirectRules.map((rule, index) => {
 
     // Build regex filter
-    let regex = `^https?://${esc(rule.from)}`;
-    if (rule.match) {
-      regex += `(?:${esc(rule.match)})(.*)$`; // capture resource name after match
+    let regex = `^https?://${esc(rule.domain)}`;
+    if (rule.path) {
+      regex += `(?:${esc(rule.path)})(.*)$`; // capture resource name after match
     } else {
       regex += `/(.*)$`; // capture whole path
     }
 
     // Build substitution
-    let substitution = rule.to.endsWith("/") ? `https://${rule.to}\\1` : `https://${rule.to}/\\1`;
-    if (rule.parameter) {
-      substitution += rule.parameter;
+    let new_url = rule.substitution.endsWith("/") ? `https://${rule.substitution}\\1` : `https://${rule.substitution}/\\1`;
+    if (rule.extra) {
+      new_url += rule.extra;
     }
 
     return {
@@ -37,7 +37,7 @@ async function updateDNRRules() {
       priority: 1,
       action: {
         type: "redirect",
-        redirect: { regexSubstitution: substitution }
+        redirect: { regexSubstitution: new_url }
       },
       condition: {
         regexFilter: regex,

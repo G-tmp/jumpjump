@@ -17,7 +17,7 @@ function updateListener() {
   browser.webRequest.onBeforeRequest.removeListener(handleRequest);
 
   // Convert rules into filters
-  const urls = redirectRules.filter(rule => rule.form != "").map(rule => `*://${rule.from}/*`);
+  const urls = redirectRules.filter(rule => rule.domain != "").map(rule => `*://${rule.domain}/*`);
   console.log("match urls:", urls);
 
   // Add new listener
@@ -42,8 +42,8 @@ function handleRequest(details) {
   const url = new URL(details.url);
 
   for (let rule of redirectRules) {
-    if (url.hostname === rule.from && url.pathname.includes(rule.match)) {
-      const newUrl = details.url.replace(rule.from + rule.match, rule.to) + rule.parameter;
+    if (url.hostname === rule.domain && url.pathname.includes(rule.path)) {
+      const newUrl = details.url.replace(rule.domain + rule.path, rule.substitution) + rule.extra;
       console.log(`${url} => ${newUrl}`);
 
       browser.tabs.update(details.tabId, { url: newUrl });
