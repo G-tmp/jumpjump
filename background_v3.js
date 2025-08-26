@@ -12,25 +12,17 @@ async function updateRules() {
 
 
 async function updateDNRRules() {
-  // Escape regex special chars in domain and match
-  const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  
+  // Escape regex special chars
+  const escape = s => s.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+
   // Convert rules to declarativeNetRequest format
   const rules = redirectRules.map((rule, index) => {
 
-    // Build regex filter
-    let regex = `^https?://${esc(rule.domain)}`;
-    if (rule.path) {
-      regex += `(?:${esc(rule.path)})(.*)$`; // capture resource name after match
-    } else {
-      regex += `/(.*)$`; // capture whole path
-    }
+    // Build matcher: ^https?://<domain><path>(.*)$
+    const regex = `^https?:\/\/${escape(rule.domain)}${escape(rule.path)}(.*)$`;
 
     // Build substitution
-    let new_url = rule.substitution.endsWith("/") ? `https://${rule.substitution}\\1` : `https://${rule.substitution}/\\1`;
-    if (rule.extra) {
-      new_url += rule.extra;
-    }
+    const new_url = `https://${rule.substitution}\\1${rule.extra}`;
 
     return {
       id: index + 1,
