@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Jump Jump",
+  "name": "Jump Jump Jump",
   "version": "1.0",
   "description": "Redirect specific URL to new URL",
   "homepage_url": "https://github.com/g-tmp/jumpjump",
@@ -21,11 +21,6 @@
   "options_ui": {
     "page": "options/options.html",
     "open_in_tab": true
-  },
-
-  "action": {
-    "default_title": "Jump action",
-    "default_popup": "options/options.html"
   },
 
   "icons": {
