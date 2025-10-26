@@ -25,6 +25,11 @@
 
   "icons": {
     "48": "Luci.png"
-  }
+  },
 
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@jump-jump-jump"
+    }
+  }
 }
