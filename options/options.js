@@ -14,7 +14,7 @@ function buildRuleObject() {
 
 
 function loadRules() {
-  browser.storage.local.get("rules").then((data) => {
+  browser.storage.sync.get("rules").then((data) => {
     const rules = data.rules || [];
     const list = document.getElementById("rules-list");
     list.innerHTML = "";
@@ -42,10 +42,10 @@ function loadRules() {
           if (!newRule) 
             return;
 
-          browser.storage.local.get("rules").then((data) => {
+          browser.storage.sync.get("rules").then((data) => {
             const rules = data.rules || [];
             rules[index] = newRule;
-            browser.storage.local.set({ rules }).then(() => {
+            browser.storage.sync.set({ rules }).then(() => {
               loadRules();
               clear();
             });
@@ -57,7 +57,7 @@ function loadRules() {
       delBtn.textContent = "Delete";
       delBtn.onclick = () => {
         rules.splice(index, 1);
-        browser.storage.local.set({ rules }).then(loadRules());
+        browser.storage.sync.set({ rules }).then(loadRules());
       };
       
       item.appendChild(modifyBtn);
@@ -75,10 +75,10 @@ document.getElementById("rule-form").onsubmit = (e) => {
   if (!newRule) 
     return;
 
-  browser.storage.local.get("rules").then((data) => {
+  browser.storage.sync.get("rules").then((data) => {
     const rules = data.rules || [];
     rules.push(newRule);
-    browser.storage.local.set({ rules }).then(() => {
+    browser.storage.sync.set({ rules }).then(() => {
       loadRules();
       clear();
     });

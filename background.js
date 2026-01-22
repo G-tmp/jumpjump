@@ -6,7 +6,7 @@ updateRules().then(updateListener);
 
 
 async function updateRules() {
-  const data = await browser.storage.local.get("rules");
+  const data = await browser.storage.sync.get("rules");
   redirectRules = data.rules || [];
   console.log("Rules updated:", redirectRules);
 }

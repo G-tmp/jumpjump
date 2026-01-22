@@ -5,7 +5,7 @@ updateRules().then(updateDNRRules);
 
 
 async function updateRules() {
-  const data = await browser.storage.local.get("rules");
+  const data = await browser.storage.sync.get("rules");
   redirectRules = data.rules || [];
   console.log("Rules updated:", redirectRules);
 }
@@ -52,7 +52,7 @@ async function updateDNRRules() {
 
 // Listen for storage changes to update rules dynamically
 browser.storage.onChanged.addListener((changes, area) => {
-  if (area === "local" && changes.rules) {
+  if (area === "sync" && changes.rules) {
     updateRules().then(updateDNRRules)
   }
 });
